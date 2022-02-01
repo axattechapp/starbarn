@@ -1,0 +1,104 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    signingConfigs {
+        release {
+            storeFile file('/home/axat/Desktop/starbarn/starbarn.jks')
+            storePassword '123456'
+            keyAlias 'a'
+            keyPassword '123456'
+        }
+    }
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.axat.starbarn"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    def timeStamp = new Date().format('dd_MM');
+                    outputFileName = "STARBARNApp_${timeStamp}.apk"
+                }
+            }
+        }
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    buildFeatures{
+        dataBinding true
+        viewBinding true
+    }
+
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError true
+    }
+    task wrapper(type: Wrapper){
+        gradleVersion = '7.2'
+    }
+
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //retrofit and converter gson
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.1'
+
+    // SDP & SSP Library
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    //viewmodel and livedata
+    implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+
+    // Glide Image Loading
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+    //splashscreen
+    implementation 'androidx.core:core-splashscreen:1.0.0-alpha02'
+
+    //country code picker
+    implementation 'com.hbb20:ccp:2.5.4'
+
+
+    //circular image view
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+
+}

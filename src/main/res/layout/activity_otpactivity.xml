@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor"
+            tools:context=".activity.OTPActivity">
+
+
+            <ImageView
+                android:id="@+id/backimg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/backarrow"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textcreate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Verify Number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/backimg" />
+
+
+            <TextView
+                android:id="@+id/textcreatepass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="To create your account lets first verify\nthat this is your phone number"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textcreate" />
+
+            <TextView
+                android:id="@+id/textnumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="+61 441 678 882"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textcreatepass" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_30sdp"
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/textnumber">
+
+                <EditText
+                    android:id="@+id/otp_edit_text1"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:layout_marginEnd="@dimen/margin_right_otp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otp_edit_text2"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:layout_marginEnd="@dimen/margin_right_otp"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otp_edit_text3"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:layout_marginEnd="@dimen/margin_right_otp"
+
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/otp_edit_text4"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:layout_marginEnd="@dimen/margin_right_otp"
+
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otp_edit_text5"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:layout_marginEnd="@dimen/margin_right_otp"
+
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/otp_edit_text6"
+                    android:layout_width="@dimen/et_otp_width"
+                    android:layout_height="@dimen/et_otp_height"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textresend"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Resend"
+                android:textColor="@color/tabbg_selected"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toTopOf="@id/textcontinue"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2" />
+
+            <TextView
+                android:id="@+id/textcontinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/continuebg"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Continue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

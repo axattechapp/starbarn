@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="460dp"
+                    android:background="@color/primaryColor"
+                    tools:context=".fragment.setting.SettingFragment">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profileimg"
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_marginTop="@dimen/_30sdp"
+                        android:src="@drawable/profileicon"
+                        app:layout_constraintEnd_toEndOf="@id/guideline3"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cameraimg"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/camerabg"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/editprofile"
+                        app:layout_constraintBottom_toBottomOf="@id/profileimg"
+                        app:layout_constraintEnd_toEndOf="@id/profileimg" />
+
+
+                    <TextView
+                        android:id="@+id/textname"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="Tony McMillan"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@id/guideline3"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toBottomOf="@+id/profileimg" />
+
+
+                    <TextView
+                        android:id="@+id/textvideocount"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:background="@drawable/emailbg"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="2 Videos"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textchallenge"
+                        app:layout_constraintEnd_toStartOf="@id/textchallenge"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toTopOf="@+id/textchallenge" />
+
+                    <TextView
+                        android:id="@+id/textchallenge"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/emailbg"
+                        android:gravity="center"
+                        android:paddingTop="@dimen/_10sdp"
+                        android:paddingBottom="@dimen/_10sdp"
+                        android:text="0 Challenges remain"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="@id/guideline3"
+                        app:layout_constraintStart_toEndOf="@id/textvideocount"
+                        app:layout_constraintTop_toBottomOf="@+id/textname" />
+
+
+                    <LinearLayout
+                        android:id="@+id/limain"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="@id/guideline3"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toBottomOf="@+id/textvideocount">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textpostcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_15sdp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textColor="@color/white"
+                                android:gravity="center"
+                                android:text="Following"
+
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textfollowercount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_15sdp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Followers"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/white" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_1sdp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textfollowingcount"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_15sdp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:gravity="center"
+                                android:text="Likes"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/limainn"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_weight="3"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="@id/guideline3"
+                        app:layout_constraintStart_toStartOf="@id/guideline2"
+                        app:layout_constraintTop_toBottomOf="@+id/limain">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginEnd="@dimen/_1sdp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/save"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/laddder_bg"
+                            android:gravity="center"
+                            android:paddingTop="@dimen/_10sdp"
+                            android:paddingBottom="@dimen/_10sdp"
+                            android:text="Saved"
+                            android:layout_margin="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp"/>
+
+
+
+
+                    </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/ladder"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/laddder_bg"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
+                                android:text="Ladder"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"/>
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginEnd="@dimen/_1sdp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/rewrds"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/laddder_bg"
+                                android:gravity="center"
+                                android:layout_margin="10dp"
+                                android:paddingTop="@dimen/_10sdp"
+                                android:paddingBottom="@dimen/_10sdp"
+                                android:text="Rewards"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_12sdp"/>
+
+
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_begin="20dp" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_end="20dp" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/htab_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@color/primaryColor"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    android:visibility="visible"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabpost"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+                        android:background="@color/primaryColor"
+                        android:backgroundTint="@color/primaryColor"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        app:layout_collapseMode="pin"
+                        app:tabGravity="fill"
+                        app:tabIconTintMode="screen"
+                        app:tabIndicatorColor="@color/tabbg_selected"
+                        app:tabInlineLabel="true"
+                        app:tabMode="fixed"
+                        app:tabRippleColor="@null"
+                        app:tabSelectedTextColor="@color/white"
+                        app:tabTextColor="@color/white" />
+                </androidx.appcompat.widget.Toolbar>
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:background="@color/white"
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</LinearLayout>
+
+
+</ScrollView>
+</layout>

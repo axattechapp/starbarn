@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor"
+            android:paddingBottom="@dimen/_20sdp"
+            tools:context=".activity.CategoriesActivity">
+
+
+            <ImageView
+                android:id="@+id/backimg"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:src="@drawable/backarrow"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textcreate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="Categories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/backimg" />
+
+
+            <TextView
+                android:id="@+id/textcreatepass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="What makes you tick? Select Categories"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textcreate" />
+
+
+            <RadioGroup
+                android:id="@+id/radioall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textcreatepass">
+
+                <RadioButton
+                    android:id="@+id/radio_parkour"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Parkour"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_bmx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="BMX"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_motorcross"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Motorcross"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_skate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Skate"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_trick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Impossible Trick shots"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_ski"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Ski/Snowboarding"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_epic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Epic Fails"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_dance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Street Dance"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_yo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Yo Yo"
+                    android:textColor="@color/white" />
+
+                <RadioButton
+                    android:id="@+id/radio_wingsuit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:theme="@style/MyRadioButton"
+                    android:text="Basejump/Wingsuit"
+                    android:textColor="@color/white" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textcontinue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/continuebg"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="Continue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/radioall" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

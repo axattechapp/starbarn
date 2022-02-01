@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/primaryColor"
+        tools:context=".activity.OnBoardActivity">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline4"
+            app:layout_constraintEnd_toEndOf="@id/guideline5"
+            app:layout_constraintBottom_toTopOf="@id/li_bottom" />
+
+        <LinearLayout
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:id="@+id/li_bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideline5"
+            app:layout_constraintStart_toStartOf="@id/guideline4">
+
+            <TextView
+                android:id="@+id/textskip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Skip"
+                android:layout_gravity="center_vertical"
+                android:gravity="start"
+                android:textColor="@color/tabbg_unselected"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_indcator"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="center"
+                app:tabPadding="0dp"
+                app:tabMaxWidth="16dp"
+                app:tabIndicatorHeight="0dp">
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <TextView
+                android:id="@+id/textnext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Next"
+                android:layout_gravity="center_vertical"
+                android:gravity="end"
+                android:textColor="@color/tabbg_selected"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

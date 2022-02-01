@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/dialog_bg">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/titlelog"
+        android:text="Logout"
+        android:textSize="16sp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/logtext"
+        android:text="Are you sure want to log out of\n your account?"
+        android:textColor="@color/white"
+        android:layout_below="@+id/titlelog"
+        android:paddingBottom="10dp"
+        android:layout_centerHorizontal="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="@color/white"
+        android:layout_marginTop="1dp"
+        android:paddingTop="1dp"
+        android:id="@+id/view11"
+        android:layout_below="@+id/logtext"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view11">
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/cancelButton1"
+        android:text="Cancel"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:textColor="#FC7519"
+        android:layout_weight="1"
+
+       />
+        <View
+            android:layout_width="0.3dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/LogoutButton"
+        android:textAllCaps="false"
+        android:text="Logout"
+        android:textSize="16sp"
+        android:textColor="#FC7519"
+        android:textStyle="bold"
+        android:layout_weight="1"
+
+
+
+
+       />
+    </LinearLayout>
+
+</RelativeLayout>
