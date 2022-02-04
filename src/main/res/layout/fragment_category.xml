@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/laddder_bg"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/radioall"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintHorizontal_bias="0.496"

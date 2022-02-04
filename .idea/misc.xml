@@ -43,12 +43,31 @@
         <entry key="..\:/AXAT/starbarn/STARBARN/app/src/main/res/layout/uploadvideocustom.xml" value="0.19739583333333333" />
         <entry key="..\:/AXAT/starbarn/STARBARN/app/src/main/res/layout/your_video_single_item.xml" value="0.16304347826086957" />
         <entry key="..\:/AXAT/starbarn/STARBARN/app/src/main/res/menu/bottom_menu.xml" value="0.19739583333333333" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/emailbg.xml" value="0.2203125" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/laddder_bg.xml" value="0.2203125" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/account_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_categories.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_delete_confirm.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_image_upload.xml" value="0.18854166666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_ladder.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/activity_video_detail.xml" value="0.25" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/all_videos_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/content_category_for_ladder.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/delete_dialog_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/fragment_all2.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/fragment_category.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/fragment_top_rated.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/fragment_your_videos.xml" value="0.1" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/home_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/item_videos_container.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/logoutdialog_layout.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/personal_details.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/search_fragment.xml" value="0.25" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/setting_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/upload_video_dialog_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/uploadvideocustom.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/menu/bottom_menu.xml" value="0.20416666666666666" />
       </map>
     </option>
   </component>

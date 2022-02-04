@@ -1,11 +1,10 @@
-package com.axat.starbarn.fragment.All;
+package com.axat.starbarn.fragment.Top_rated;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,30 +14,37 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.axat.starbarn.R;
-import com.axat.starbarn.databinding.FragmentAllBinding;
+import com.axat.starbarn.databinding.FragmentTopRatedBinding;
 import com.axat.starbarn.fragment.YourVideos.yourVideoAdapter;
 
 import java.util.ArrayList;
 
 
-public class AllFragment extends Fragment {
-    View view;
+public class TopRatedFragment extends Fragment {
+
+    FragmentTopRatedBinding binding;
     RecyclerView rcv;
     yourVideoAdapter adapter;
     ArrayList<Integer> modelList;
-    ViewDataBinding binding;
 
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-//        view=inflater.inflate(R.layout.fragment_all2, container, false);
-        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_all2,container,false);
+
+        binding= DataBindingUtil.inflate(inflater,R.layout.fragment_top_rated,container,false);
 
 
         return binding.getRoot();
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

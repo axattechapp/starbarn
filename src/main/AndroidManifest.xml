@@ -17,6 +17,9 @@
         android:theme="@style/Theme.STARBARN"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activity.VideoDetails.VideoDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".DeleteConfirmActivity"
             android:exported="false" />
         <activity

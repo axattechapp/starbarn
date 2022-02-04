@@ -8,6 +8,7 @@ import android.database.DatabaseUtils;
 import android.os.Bundle;
 
 import com.axat.starbarn.R;
+import com.axat.starbarn.activity.VideoDetails.VideoDetailActivity;
 import com.axat.starbarn.databinding.ActivityImageUploadBinding;
 
 public class ImageUploadActivity extends AppCompatActivity {
@@ -22,7 +23,9 @@ public class ImageUploadActivity extends AppCompatActivity {
             onBackPressed();
         });
         binding.textcontinue.setOnClickListener(view -> {
-            startActivity(new Intent(ImageUploadActivity.this, CategoriesActivity.class));
+            Intent intent1=new Intent(ImageUploadActivity.this, CategoriesActivity.class);
+            intent1.putExtra("activity",2);
+            startActivity(intent1);
         });
     }
 }

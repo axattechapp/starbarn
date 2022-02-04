@@ -20,6 +20,7 @@ import com.axat.starbarn.R;
 import com.axat.starbarn.databinding.SearchFragmentBinding;
 import com.axat.starbarn.fragment.All.AllFragment;
 import com.axat.starbarn.fragment.CategoryFragment;
+import com.axat.starbarn.fragment.Top_rated.TopRatedFragment;
 import com.axat.starbarn.fragment.YourVideos.yourVideosFragment;
 
 public class SearchFragment extends Fragment {
@@ -45,11 +46,13 @@ public class SearchFragment extends Fragment {
 //                binding.allText.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
                 binding.SelectText.setBackgroundResource(R.drawable.textback);
                 binding.SelectText.setTextColor(Color.BLACK);
+                binding.allText.setTextColor(Color.WHITE);
+                binding.categoryText.setTextColor(Color.WHITE);
 
                 binding.allText.setBackgroundResource(R.drawable.laddder_bg);
                 binding.categoryText.setBackgroundResource(R.drawable.laddder_bg);
 
-                replaceFragment(new yourVideosFragment());
+                replaceFragment(new TopRatedFragment());
 
 
 
@@ -63,6 +66,8 @@ public class SearchFragment extends Fragment {
 //                binding.SelectText.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
                 binding.allText.setBackgroundResource(R.drawable.textback);
                 binding.allText.setTextColor(Color.BLACK);
+                binding.SelectText.setTextColor(Color.WHITE);
+                binding.categoryText.setTextColor(Color.WHITE);
 
                 replaceFragment(new AllFragment());
 
@@ -79,6 +84,8 @@ public class SearchFragment extends Fragment {
 
                 binding.categoryText.setBackgroundResource(R.drawable.textback);
                 binding.categoryText.setTextColor(Color.BLACK);
+                binding.allText.setTextColor(Color.WHITE);
+                binding.SelectText.setTextColor(Color.WHITE);
 
                 binding.SelectText.setBackgroundResource(R.drawable.laddder_bg);
 
