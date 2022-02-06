@@ -1,7 +1,10 @@
 package com.axat.starbarn.adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,9 +33,12 @@ import java.util.List;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
     private List<VideoItem> mVideoItems;
+    Context mContext;
 
-    public VideosAdapter(List<VideoItem> videoItems) {
+    public VideosAdapter(List<VideoItem> videoItems, Context context) {
         mVideoItems = videoItems;
+        mContext=context;
+
     }
 
     @NonNull
@@ -42,7 +49,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
     @Override
     public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
-        holder.setVideoData(mVideoItems.get(position));
+        holder.setVideoData(mVideoItems.get(position),mContext);
 
 
         holder.shareimg.setOnClickListener(view -> {
@@ -116,14 +123,41 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
         }
 
 
-        void setVideoData(VideoItem videoItem) {
+        void setVideoData(VideoItem videoItem,Context context) {
             txtTitle.setText(videoItem.videoTitle);
             txtDesc.setText(videoItem.videoDesc);
-            mVideoView.setVideoPath(videoItem.videoURL);
+            try {
+                //Attach a media controller to video view
+//                MediaController mediaController = new MediaController(context);
+//                mVideoView.setMediaController(mediaController);
+//                mediaController.setAnchorView(mVideoView);
+
+                //add your video URL
+                Uri  uri = Uri.parse(videoItem.videoURL);
+
+
+                mVideoView.setVideoURI(uri);
+                mVideoView.requestFocus();
+                mVideoView.start();
+
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+
+//            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//                public void onPrepared(MediaPlayer mp) {
+//
+//                }
+//            });
+            Log.e("videopath",videoItem.videoURL);
+//            mVideoView.setVideoPath(videoItem.videoURL);
+//            mVideoView.start();
             mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     mProgressBar.setVisibility(View.GONE);
+                    mVideoView.start();
                     mp.start();
 
                     float videoRatio = mp.getVideoWidth() / (float) mp.getVideoHeight();

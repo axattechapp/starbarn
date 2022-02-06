@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.axat.starbarn.R;
 import com.axat.starbarn.activity.CategoriesActivity;
+import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.databinding.ActivityVideoDetailBinding;
 
 public class VideoDetailActivity extends AppCompatActivity {
@@ -30,7 +31,7 @@ public class VideoDetailActivity extends AppCompatActivity {
 
         binding.video1.setVideoPath(String.valueOf(myUri));
         binding.video1.start();
-
+        binding.uploadBtn.setEnabled(false);
 
         if (valuw==2)
         {
@@ -50,6 +51,15 @@ public class VideoDetailActivity extends AppCompatActivity {
             String text=intent.getStringExtra("result");
             binding.category.setText(text);
             Log.e("result",text);
+            binding.uploadBtn.setBackgroundColor(getResources().getColor(R.color.btn_orange));
+            binding.uploadBtn.setEnabled(true);
+            binding.uploadBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent1=new Intent(VideoDetailActivity.this, HomeActivity.class);
+                    startActivity(intent1);
+                }
+            });
         }
 
 
@@ -63,5 +73,6 @@ public class VideoDetailActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

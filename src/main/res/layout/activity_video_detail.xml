@@ -37,25 +37,27 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        android:id="@+id/videoCard"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp">
+<!--    <com.google.android.material.card.MaterialCardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="350dp"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        android:id="@+id/videoCard"-->
+<!--       >-->
 
 
         <VideoView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="350dp"
             android:id="@+id/video1"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             />
 
-    </com.google.android.material.card.MaterialCardView>
+<!--    </com.google.android.material.card.MaterialCardView>-->
 
 
 
@@ -77,7 +79,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/videoCard"
+        app:layout_constraintTop_toBottomOf="@+id/video1"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/white"/>
 
@@ -88,7 +90,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintTop_toBottomOf="@+id/videoCard"
+            app:layout_constraintTop_toBottomOf="@+id/video1"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
 

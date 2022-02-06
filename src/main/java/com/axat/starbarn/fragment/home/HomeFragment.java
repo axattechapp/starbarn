@@ -62,6 +62,6 @@ public class HomeFragment extends Fragment {
         item3.videoDesc = " Depth-First Search Algorithm";
         videoItems.add(item3);
 
-        binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems));
+        binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems,binding.viewPagerVideos.getContext()));
     }
 }

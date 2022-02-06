@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,7 @@ public class CategoriesActivity extends AppCompatActivity {
                                                            }
                                                        }
            );
+           binding.textcontinue.setBackgroundColor(getResources().getColor(R.color.btn_orange));
 
        }else
        {
