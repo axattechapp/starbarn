@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,24 @@ public class SearchFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         binding= DataBindingUtil.inflate(inflater,R.layout.search_fragment,container,false);
+
+
+        Fragment fragment = null;
+        if(fragment==null)
+        {
+            binding.SelectText.getBackground().setColorFilter(getResources().getColor(R.color.tabbg_selected), PorterDuff.Mode.SRC_ATOP);
+//                binding.allText.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            binding.SelectText.setBackgroundResource(R.drawable.textback);
+            binding.SelectText.setTextColor(Color.BLACK);
+            binding.allText.setTextColor(Color.WHITE);
+            binding.categoryText.setTextColor(Color.WHITE);
+
+            binding.allText.setBackgroundResource(R.drawable.laddder_bg);
+            binding.categoryText.setBackgroundResource(R.drawable.laddder_bg);
+
+            replaceFragment(new TopRatedFragment());
+        }
+
 
 
 

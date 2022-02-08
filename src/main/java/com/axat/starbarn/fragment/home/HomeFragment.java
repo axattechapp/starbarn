@@ -33,7 +33,9 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        inflater.getContext().setTheme(R.style.FullScreen);
         binding = DataBindingUtil.inflate(inflater,R.layout.home_fragment,container,false);
+
         return binding.getRoot();
     }
 
@@ -52,8 +54,8 @@ public class HomeFragment extends Fragment {
 
         VideoItem item2 = new VideoItem();
         item2.videoURL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        item2.videoTitle = "vishwa";
-        item2.videoDesc = "How vishwa Became a Software Developer at AXAT";
+        item2.videoTitle = "AXAT";
+        item2.videoDesc = "Axat provides best software solutions.";
         videoItems.add(item2);
 
         VideoItem item3 = new VideoItem();
@@ -62,6 +64,6 @@ public class HomeFragment extends Fragment {
         item3.videoDesc = " Depth-First Search Algorithm";
         videoItems.add(item3);
 
-        binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems,binding.viewPagerVideos.getContext()));
+        binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems));
     }
 }
