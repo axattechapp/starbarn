@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 
@@ -15,6 +16,7 @@ import com.axat.starbarn.R;
 import com.axat.starbarn.databinding.ActivityLadderBinding;
 import com.axat.starbarn.fragment.All.AllFragment;
 import com.axat.starbarn.fragment.CategoryFragment;
+import com.axat.starbarn.fragment.Top_rated.TopRatedFragment;
 import com.axat.starbarn.fragment.YourVideos.yourVideosFragment;
 
 public class LadderActivity extends AppCompatActivity {
@@ -28,6 +30,19 @@ public class LadderActivity extends AppCompatActivity {
         binding= DataBindingUtil.setContentView(this,R.layout.activity_ladder);
 
         binding.imageView3.setOnClickListener(view -> onBackPressed());
+        Fragment fragment = null;
+        if(fragment==null)
+        {
+//            binding.SelectText.getBackground().setColorFilter(getResources().getColor(R.color.tabbg_selected), PorterDuff.Mode.SRC_ATOP);
+//                binding.allText.getBackground().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            binding.SelectText.setBackgroundResource(R.drawable.textback);
+            binding.SelectText.setTextColor(Color.BLACK);
+
+            binding.allText.setBackgroundResource(R.drawable.laddder_bg);
+            binding.categoryText.setBackgroundResource(R.drawable.laddder_bg);
+
+            replaceFragment(new yourVideosFragment());
+        }
 
 
         binding.SelectText.setOnClickListener(new View.OnClickListener() {
