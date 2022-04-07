@@ -29,19 +29,22 @@
                 android:id="@+id/img_logo"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_200sdp"
-                android:src="@drawable/logo"
+                android:layout_marginTop="88dp"
+                android:src="@drawable/app_logo"
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/space_top" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textdesccompi"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:layout_marginTop="50dp"
                 android:text="World wide best of the best\ncompetition - Are you ready!"
                 android:textColor="@color/tabbg_unselected"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_14sdp"
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/img_logo" />
@@ -61,7 +64,7 @@
                     android:id="@+id/editemailedittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/emailbg"
+                    android:background="@drawable/email2_bg"
                     android:hint="Email"
                     android:paddingStart="@dimen/_10sdp"
                     android:paddingEnd="@dimen/_10sdp"
@@ -77,27 +80,29 @@
                 app:layout_constraintTop_toBottomOf="@+id/editemailinput"
                 android:text="Continue"
                 android:textColor="@color/black"
-                android:background="@drawable/continuebg"
+                android:background="@drawable/login_back"
                 android:padding="@dimen/_10sdp"
                 android:gravity="center"
                 android:textSize="@dimen/_12sdp"
                 android:id="@+id/textcontinue"
                 android:layout_marginTop="@dimen/_30sdp"/>
 
+
             <TextView
+                android:id="@+id/textcondition"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/guideline3"
-                app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textcontinue"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:gravity="center"
+                android:textColor="@color/white"
+                android:text="@string/condition"
                 android:textSize="@dimen/_10sdp"
-                android:id="@+id/textcondition"
-                android:layout_marginTop="@dimen/_20sdp"/>
-
-
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textcontinue" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"

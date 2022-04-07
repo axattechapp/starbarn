@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.axat.starbarn.R;
+import com.axat.starbarn.ToastDislikeActivity;
 import com.axat.starbarn.activity.Account;
 import com.axat.starbarn.activity.Ladder.LadderActivity;
 import com.axat.starbarn.activity.Rewards;
@@ -33,6 +35,7 @@ public class SettingFragment extends Fragment {
 
     private SettingViewModel mViewModel;
     SettingFragmentBinding binding;
+
 
     public static SettingFragment newInstance() {
         return new SettingFragment();
@@ -135,4 +138,5 @@ public class SettingFragment extends Fragment {
         });
 
     }
+
 }

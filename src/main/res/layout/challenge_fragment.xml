@@ -1,13 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primaryColor"
     tools:context=".fragment.challenge.ChallengeFragment">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/letsText"
+            android:textStyle="bold"
+            android:text="Lets Get it on"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/crown"
+            app:layout_constraintStart_toStartOf="@+id/letsText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:id="@+id/secondText"
+            android:text="You have 7 days to work."
+            app:layout_constraintTop_toBottomOf="@+id/letsText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="10dp"
+            android:textSize="@dimen/_12sdp"/>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:id="@+id/firstCard"
+            android:background="@null"
+            android:backgroundTint="#282826"
+            app:layout_constraintTop_toBottomOf="@+id/secondText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="40dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="200dp"
+                        android:layout_height="80dp"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:weightSum="2"
+                        android:background="@drawable/group1">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/seven_text"
+                            android:layout_weight="1"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:layout_weight="1">
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="20dp"
+                                android:paddingBottom="5dp"
+
+                                android:src="@drawable/days_text"
+
+
+                                />
+                            <ImageView
+                                android:layout_width="60dp"
+                                android:layout_height="20dp"
+                                android:paddingTop="5dp"
+                                android:src="@drawable/to_go_text"
+
+                                />
+                        </LinearLayout>
+
+
+
+
+
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="10dp"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_weight="1">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/profilephoto"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+
+                                android:text="David Camplin"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
+                                android:layout_gravity="center"
+                                android:textSize="@dimen/_14sdp"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+
+                            android:layout_weight="1">
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/profileicon"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:text="Tony Mcmilan"
+                                android:paddingStart="5dp"
+                                android:layout_gravity="center"
+                                android:textSize="@dimen/_14sdp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/chalenge_notification1"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/challenge_request2"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:background="@null"
+                            android:backgroundTint="@color/btn_orange"
+                            app:cornerRadius="10dp"
+                            android:layout_weight="1"
+                            app:icon="@drawable/arrow_up"
+                            app:iconTint="@color/black"
+                            app:iconPadding="10dp"
+                            android:text="125"
+                            android:textColor="@color/black"
+                            app:iconGravity="textStart"
+                            app:iconSize="@dimen/_14sdp"
+                            android:layout_margin="10dp"/>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:backgroundTint="@color/btn_orange"
+                            app:cornerRadius="10dp"
+                            android:layout_weight="1"
+                            app:icon="@drawable/arrow_up"
+                            app:iconTint="@color/black"
+                            app:iconPadding="10dp"
+                            android:text="105"
+                            android:textColor="@color/black"
+                            app:iconGravity="textStart"
+                            app:iconSize="@dimen/_14sdp"
+                            android:layout_margin="10dp"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+
+            </FrameLayout>
+
+
+
+
+
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:background="@null"
+            android:backgroundTint="#282826"
+            app:layout_constraintTop_toBottomOf="@+id/firstCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="200dp"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="2"
+                    android:background="@drawable/group1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/zero"
+                        android:layout_weight="1"
+                        />
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/zero"
+                        android:layout_weight="1"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                >
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:src="@drawable/rectangle3"></de.hdodenhof.circleimageview.CircleImageView>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+
+                                    android:text="David Camplin"
+                                    android:paddingStart="5dp"
+                                    android:paddingEnd="5dp"
+                                    android:layout_gravity="center"
+                                    android:textSize="@dimen/_14sdp"/>
+
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="300dp"
+                                android:src="@drawable/rectangle3"
+                                android:scaleType="fitXY"
+                                android:layout_margin="10dp"/>
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/winner"
+                            android:layout_gravity="bottom|right"/>
+                    </FrameLayout>
+
+
+
+
+
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="100dp">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+
+                                >
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:src="@drawable/rectangle4"/>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/white"
+                                    android:text="Tony Mcmilan"
+                                    android:paddingStart="5dp"
+                                    android:layout_gravity="center"
+                                    android:textSize="@dimen/_14sdp"/>
+
+                            </LinearLayout>
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="200dp"
+                                android:src="@drawable/rectangle4"
+                                android:scaleType="fitXY"
+                                android:layout_margin="10dp"/>
+                        </LinearLayout>
+                    </FrameLayout>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="30dp"
+                    android:weightSum="2">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:background="@null"
+                        android:backgroundTint="@color/btn_orange"
+                        app:cornerRadius="10dp"
+                        android:layout_weight="1"
+                        app:icon="@drawable/arrow_up"
+                        app:iconTint="@color/black"
+                        app:iconPadding="10dp"
+                        android:text="168"
+                        android:textColor="@color/black"
+                        app:iconGravity="textStart"
+                        app:iconSize="@dimen/_14sdp"
+                        android:layout_margin="10dp"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:backgroundTint="@color/btn_orange"
+                        app:cornerRadius="10dp"
+                        android:layout_weight="1"
+                        app:icon="@drawable/arrow_up"
+                        app:iconTint="@color/black"
+                        app:iconPadding="10dp"
+                        android:text="1114"
+                        android:textColor="@color/black"
+                        app:iconGravity="textStart"
+                        app:iconSize="@dimen/_14sdp"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+</layout>

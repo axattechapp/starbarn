@@ -15,5 +15,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="condition">By Continuing you are agree to our<b>Terms of Service</b><br></br> and <b>Privacy Policy</b></string>
 
 </resources>

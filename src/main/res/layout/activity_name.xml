@@ -106,7 +106,7 @@
                     android:id="@+id/editpassedittext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/emailbg"
+                    android:background="@drawable/email2_bg"
                     android:hint="Name"
                     android:inputType="textPersonName"
                     android:paddingStart="@dimen/_10sdp"
@@ -121,7 +121,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/continuebg"
+                android:background="@drawable/login_back"
                 android:gravity="center"
                 android:padding="@dimen/_10sdp"
                 android:text="Continue"
@@ -129,6 +129,7 @@
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/guideline2" />
 
 

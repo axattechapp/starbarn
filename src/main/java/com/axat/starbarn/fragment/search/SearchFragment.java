@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.axat.starbarn.R;
+import com.axat.starbarn.activity.SearchActivity;
 import com.axat.starbarn.databinding.SearchFragmentBinding;
 import com.axat.starbarn.fragment.All.AllFragment;
 import com.axat.starbarn.fragment.CategoryFragment;
@@ -75,6 +77,12 @@ public class SearchFragment extends Fragment {
 
 
 
+            }
+        });
+        binding.searchEdt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(binding.allText.getContext(), SearchActivity.class));
             }
         });
 

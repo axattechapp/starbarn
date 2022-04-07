@@ -4,13 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
+import com.axat.starbarn.DeleteConfirmActivity;
 import com.axat.starbarn.R;
 import com.axat.starbarn.databinding.ActivitySavedBinding;
-import com.axat.starbarn.fragment.allvideo.AllImageAdapter;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,15 @@ public class Saved extends AppCompatActivity {
         binding= DataBindingUtil.setContentView(this,R.layout.activity_saved);
 
         binding.imageView3.setOnClickListener(view -> onBackPressed());
+        binding.deleteIcon.setClickable(false);
 
+        binding.deleteIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Saved.this, DeleteConfirmActivity.class));
+
+            }
+        });
 
         modelList=new ArrayList<Integer>();
 //        rcv.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -76,6 +84,16 @@ public class Saved extends AppCompatActivity {
                     binding.savedVideosRec.setAdapter(adapter);
 
                     binding.SelectText.setText("Cancel");
+                    binding.deleteIcon.setVisibility(View.VISIBLE);
+                    binding.deleteIcon.setClickable(true);
+
+                    binding.deleteIcon.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            startActivity(new Intent(Saved.this, DeleteConfirmActivity.class));
+
+                        }
+                    });
 //                    Toast.makeText(Saved.this, "Clicked", Toast.LENGTH_SHORT).show();
 
 

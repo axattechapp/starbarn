@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.ConditionVariable;
 import android.view.View;
 
+import com.axat.starbarn.LoginActivity;
 import com.axat.starbarn.R;
 import com.axat.starbarn.adapter.OnBoardAdapter;
 import com.axat.starbarn.databinding.ActivityOnBoardBinding;
@@ -45,7 +46,7 @@ public class OnBoardActivity extends AppCompatActivity {
 
 
                 if (binding.viewpager.getCurrentItem() == list.size() - 1) {
-                    startActivity(new Intent(OnBoardActivity.this, EmailActivity.class));
+                    startActivity(new Intent(OnBoardActivity.this, LoginActivity.class));
                     finish();
                 } else {
                     binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() + 1);
@@ -54,7 +55,7 @@ public class OnBoardActivity extends AppCompatActivity {
         });
 
         binding.textskip.setOnClickListener(view -> {
-            startActivity(new Intent(OnBoardActivity.this, EmailActivity.class));
+            startActivity(new Intent(OnBoardActivity.this, LoginActivity.class));
             finish();
         });
 

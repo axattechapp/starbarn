@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.axat.starbarn.Instructions.InstructionsActivity1;
 import com.axat.starbarn.R;
 import com.axat.starbarn.activity.VideoDetails.VideoDetailActivity;
 import com.axat.starbarn.databinding.ActivityCategoriesBinding;
@@ -36,7 +37,7 @@ public class CategoriesActivity extends AppCompatActivity {
                                                            public void onCheckedChanged(RadioGroup group, int checkedId)
                                                            {
                                                                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                                                               Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_SHORT).show();
+//                                                               Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_SHORT).show();
                                                                Intent intent1=new Intent(CategoriesActivity.this, VideoDetailActivity.class);
                                                                intent1.putExtra("result",radioButton.getText().toString());
                                                                intent1.putExtra("value",1);
@@ -54,12 +55,12 @@ public class CategoriesActivity extends AppCompatActivity {
                                                            public void onCheckedChanged(RadioGroup group, int checkedId)
                                                            {
                                                                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                                                               Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_SHORT).show();
+//                                                               Toast.makeText(getBaseContext(), radioButton.getText(), Toast.LENGTH_SHORT).show();
                                                            }
                                                        }
            );
            binding.textcontinue.setOnClickListener(view -> {
-               startActivity(new Intent(CategoriesActivity.this,HomeActivity.class));
+               startActivity(new Intent(CategoriesActivity.this, InstructionsActivity1.class));
            });
        }
 

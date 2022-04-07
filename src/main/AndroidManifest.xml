@@ -3,22 +3,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.axat.starbarn">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera.flash" />
 
     <application
         android:allowBackup="false"
         android:fullBackupOnly="true"
         android:hardwareAccelerated="false"
-        android:usesCleartextTraffic="true"
-        android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/Theme.STARBARN"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme"
         tools:targetApi="m">
+        <activity
+            android:name=".activity.Users_Profile.UsersProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TakeVideo.PixxxxccActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Challege_Notification.ChallengeNotification3Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Challege_Notification.ChallengeNotification2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Challege_Notification.ChallengeNotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Your_videos.YourVideosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Challenge.UploadChallengeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Challenge.Challenge_request_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Notification.Notification2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Notification.Notification1Activity"
+            android:exported="false" />
+        <activity
+            android:name=".deleteActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".Instructions.Instructions2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Instructions.InstructionsActivity1"
+            android:exported="false" />
+        <activity
+            android:name=".ToastLikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ToastDislikeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.VideoDetails.VideoDetailActivity"
             android:exported="false" />
@@ -51,12 +117,7 @@
             android:exported="false" />
         <activity
             android:name=".activity.HomeActivity"
-            android:exported="true"
-          
-
-           >
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.CategoriesActivity"
             android:exported="true" />
@@ -87,7 +148,8 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

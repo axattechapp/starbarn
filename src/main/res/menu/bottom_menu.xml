@@ -6,15 +6,15 @@
         android:title="Home" />
     <item
         android:id="@+id/navigation_search"
-        android:icon="@drawable/searchnew"
+        android:icon="@drawable/search1"
         android:title="Search" />
     <item
         android:id="@+id/navigation_upload"
-        android:icon="@drawable/uploadvideonav"
+        android:icon="@drawable/plus_orange"
         android:title="Upload" />
     <item
         android:id="@+id/navigation_challenge"
-        android:icon="@drawable/challenge"
+        android:icon="@drawable/vs_white"
         android:title="Challenge" />
     <item
         android:id="@+id/navigation_setting"

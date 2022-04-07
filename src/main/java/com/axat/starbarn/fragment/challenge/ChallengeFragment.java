@@ -1,5 +1,6 @@
 package com.axat.starbarn.fragment.challenge;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -13,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.axat.starbarn.R;
+import com.axat.starbarn.databinding.ChallengeFragmentBinding;
 
 public class ChallengeFragment extends Fragment {
 
     private ChallengeViewModel mViewModel;
+    ChallengeFragmentBinding binding;
 
     public static ChallengeFragment newInstance() {
         return new ChallengeFragment();
@@ -25,7 +28,9 @@ public class ChallengeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.challenge_fragment, container, false);
+        binding= DataBindingUtil.inflate(inflater,R.layout.challenge_fragment,container,false);
+//        return inflater.inflate(R.layout.challenge_fragment, container, false);
+        return binding.getRoot();
     }
 
     @Override
