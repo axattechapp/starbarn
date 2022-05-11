@@ -44,6 +44,7 @@
         <entry key="..\:/AXAT/starbarn/STARBARN/app/src/main/res/layout/your_video_single_item.xml" value="0.16304347826086957" />
         <entry key="..\:/AXAT/starbarn/STARBARN/app/src/main/res/menu/bottom_menu.xml" value="0.19739583333333333" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/continuebg.xml" value="0.2203125" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/custom_btn_radio.xml" value="0.181" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/delete_dialog_bg.xml" value="0.19583333333333333" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/dialog_bg.xml" value="0.19583333333333333" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/dialog_bg1.xml" value="0.19315068493150686" />
@@ -55,6 +56,9 @@
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2203125" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/laddder_bg.xml" value="0.2203125" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/login_back.xml" value="0.20833333333333334" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/radio_checked.xml" value="0.181" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/radio_unchecked.xml" value="0.181" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/radiobutton_drawable.xml" value="0.181" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/splah_bg.xml" value="0.1" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/drawable/textback.xml" value="0.16296296296296298" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout-land/activity_login.xml" value="0.1728395061728395" />
@@ -118,6 +122,7 @@
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/item_videos_container.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/logoutdialog_layout.xml" value="0.20416666666666666" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/personal_details.xml" value="0.20416666666666666" />
+        <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/radio_butt.xml" value="0.10208333333333333" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/saved_img_single_item_layout.xml" value="0.1814814814814815" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/search_fragment.xml" value="0.25" />
         <entry key="..\:/Back_UP_AXAT/starbarn/STARBARN/app/src/main/res/layout/search_item.xml" value="0.1" />

@@ -42,7 +42,10 @@ public class EmailActivity extends AppCompatActivity {
         binding.textcondition.append(wordfour);
 
         binding.textcontinue.setOnClickListener(view -> {
-            startActivity(new Intent(EmailActivity.this,CreatePasswordActivity.class));
+//            startActivity(new Intent(EmailActivity.this,CreatePasswordActivity.class));
+            Intent intent=new Intent(EmailActivity.this,CreatePasswordActivity.class);
+            intent.putExtra("email",binding.editemailedittext.getText().toString());
+            startActivity(intent);
         });
 
     }

@@ -18,7 +18,10 @@ public class NameActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_name);
 
         binding.textcontinue.setOnClickListener(view -> {
-            startActivity(new Intent(NameActivity.this, ImageUploadActivity.class));
+            Intent intent2=new Intent(NameActivity.this,ImageUploadActivity.class);
+            intent2.putExtra("name",binding.editpassedittext.getText().toString());
+            startActivity(intent2);
+//            startActivity(new Intent(NameActivity.this, ImageUploadActivity.class));
         });
         binding.backimg.setOnClickListener(view -> {
             onBackPressed();

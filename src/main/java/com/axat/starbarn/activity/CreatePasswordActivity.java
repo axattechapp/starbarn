@@ -18,8 +18,15 @@ public class CreatePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_create_password);
 
+        Intent intent=getIntent();
+        String email=intent.getStringExtra("email");
+
         binding.textcontinue.setOnClickListener(view -> {
-            startActivity(new Intent(CreatePasswordActivity.this, VerfiyNumberActivity.class));
+//            startActivity(new Intent(CreatePasswordActivity.this, VerfiyNumberActivity.class));
+            Intent intent2=new Intent(CreatePasswordActivity.this,VerfiyNumberActivity.class);
+            intent2.putExtra("email",email);
+            intent2.putExtra("password",binding.editpassedittext.getText().toString());
+            startActivity(intent2);
         });
         binding.backimg.setOnClickListener(view -> {
             onBackPressed();

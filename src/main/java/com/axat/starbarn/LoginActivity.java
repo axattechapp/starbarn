@@ -6,10 +6,12 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.axat.starbarn.activity.EmailActivity;
+import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.databinding.ActivityLoginBinding;
 import com.axat.starbarn.model.LoginModel;
 import com.axat.starbarn.service.Api;
@@ -60,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
+
         binding.textlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +89,8 @@ public class LoginActivity extends AppCompatActivity {
                                     editor.putString("token", model.getToken());
                                     editor.apply();
 
-                                    startActivity(new Intent(LoginActivity.this, EmailActivity.class));
+                                    Log.e("token",model.getToken());
+                                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                     finishAffinity();
                                 } else
                                     Toast.makeText(LoginActivity.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
@@ -105,6 +110,14 @@ public class LoginActivity extends AppCompatActivity {
                 }else {
                     binding.editemailedittext.setError("Enter email");
                 }
+            }
+        });
+
+        binding.signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, EmailActivity.class));
+                finishAffinity();
             }
         });
 

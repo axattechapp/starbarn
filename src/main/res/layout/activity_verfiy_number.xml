@@ -104,7 +104,7 @@
                     app:hintTextColor="@color/tabbg_unselected">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editpassedittext"
+                        android:id="@+id/editphoneedittext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/email2_bg"
