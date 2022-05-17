@@ -5,6 +5,8 @@ import com.axat.starbarn.model.LoginModel;
 import com.axat.starbarn.model.LogoutModel;
 import com.axat.starbarn.model.OTP_Model;
 import com.axat.starbarn.model.Register_phase1;
+import com.axat.starbarn.model.ViewProfileModel;
+import com.axat.starbarn.model.WhoUserModel;
 import com.axat.starbarn.model.saveProfileModel;
 import com.google.gson.JsonObject;
 
@@ -19,6 +21,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface Api {
   String BASE_URL = "http://3.132.0.157/starbarn/public/api/";
@@ -46,6 +49,13 @@ public interface Api {
                                      @Part("category_id[]") RequestBody category_id,
                                      @Part MultipartBody.Part image);
 
+
+
+ @POST("me")
+ Call<WhoUserModel> getUserDetails(@Header("Authorization") String token);
+
+ @GET("view_profile")
+ Call<ViewProfileModel> viewProfile(@Query("userid") String userid);
 
 
 

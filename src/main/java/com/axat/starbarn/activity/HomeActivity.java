@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,13 +21,27 @@ import android.widget.Toast;
 
 import com.axat.starbarn.Instructions.Instructions2Activity;
 import com.axat.starbarn.Instructions.InstructionsActivity1;
+import com.axat.starbarn.MainActivity;
 import com.axat.starbarn.R;
 import com.axat.starbarn.ToastDislikeActivity;
 import com.axat.starbarn.ToastLikeActivity;
 import com.axat.starbarn.databinding.ActivityHomeBinding;
+import com.axat.starbarn.model.WhoUserModel;
+import com.axat.starbarn.service.Api;
 import com.axat.starbarn.service.OnSwipeTouchListener;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -40,13 +55,59 @@ public class HomeActivity extends AppCompatActivity {
     public float x1, x2, y1, y2;
 //    InstructionsActivity1.SwipeListener swipeListener;
 
+    Api api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home);
 
+        OkHttpClient okHttpClient=new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.MINUTES)
+                .writeTimeout(8,TimeUnit.MINUTES)
+                .readTimeout(8,TimeUnit.MINUTES)
+                .build();
 
+
+        Gson gson=new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        api=retrofit.create(Api.class);
+
+        SharedPreferences sharedPreferences=getSharedPreferences("goat",MODE_PRIVATE);
+        String token1=sharedPreferences.getString("token","");
+        Log.e("token1","token1"+token1);
+        Call<WhoUserModel> call=api.getUserDetails("Bearer "+token1);
+        call.enqueue(new Callback<WhoUserModel>() {
+            @Override
+            public void onResponse(Call<WhoUserModel> call, Response<WhoUserModel> response) {
+                if (response.code()==200)
+                {
+                    WhoUserModel model= response.body();
+                    Log.e("sucess_details","user_id"+ String.valueOf(model.id));
+                    SharedPreferences sharedPreferences1=getSharedPreferences("goat",MODE_PRIVATE);
+                    sharedPreferences1.edit().putString("user_id", String.valueOf(model.id));
+                    sharedPreferences1.edit().apply();
+                    sharedPreferences1.edit().commit();
+
+                }else
+                {
+                    Toast.makeText(HomeActivity.this,"error"+response.message(),Toast.LENGTH_SHORT);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<WhoUserModel> call, Throwable t) {
+                Toast.makeText(HomeActivity.this,"fail"+t.getMessage(),Toast.LENGTH_SHORT);
+            }
+        });
 
 
 
@@ -109,6 +170,7 @@ public class HomeActivity extends AppCompatActivity {
 //                return false;
 //            }
 //        });
+
 
 
     }
