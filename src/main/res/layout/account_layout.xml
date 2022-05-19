@@ -37,7 +37,7 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileimg"
+        android:id="@+id/profileimg1"
         android:layout_width="@dimen/_120sdp"
         android:layout_height="@dimen/_120sdp"
         android:layout_marginTop="@dimen/_30sdp"
@@ -54,8 +54,8 @@
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:src="@drawable/camera"
-        app:layout_constraintEnd_toEndOf="@id/profileimg"
-        app:layout_constraintBottom_toBottomOf="@id/profileimg"
+        app:layout_constraintEnd_toEndOf="@id/profileimg1"
+        app:layout_constraintBottom_toBottomOf="@id/profileimg1"
         android:id="@+id/cameraimg"/>
 
     <com.google.android.material.card.MaterialCardView
@@ -67,7 +67,7 @@
         android:backgroundTint="@color/primaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileimg">
+        app:layout_constraintTop_toBottomOf="@+id/profileimg1">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

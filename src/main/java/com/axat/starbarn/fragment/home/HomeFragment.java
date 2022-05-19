@@ -1,10 +1,15 @@
 package com.axat.starbarn.fragment.home;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,20 +29,36 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.axat.starbarn.Instructions.Instructions2Activity;
 import com.axat.starbarn.Instructions.InstructionsActivity1;
 import com.axat.starbarn.R;
+import com.axat.starbarn.activity.CategoriesActivity;
 import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.adapter.VideosAdapter;
 import com.axat.starbarn.databinding.HomeFragmentBinding;
+import com.axat.starbarn.model.CategoryModel;
+import com.axat.starbarn.model.HomeVideoResponse;
 import com.axat.starbarn.model.VideoItem;
+import com.axat.starbarn.service.Api;
 import com.axat.starbarn.service.OnSwipeTouchListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeFragment extends Fragment  {
 
@@ -52,6 +73,8 @@ public class HomeFragment extends Fragment  {
     int SCROLLING_LEFT = 1;
     int SCROLLING_UNDETERMINED = 2;
     float tempPositionOffset = 0;
+    Api api;
+    LayoutInflater inflater;
 
 
     int currentScrollDirection = 2;
@@ -149,6 +172,9 @@ public class HomeFragment extends Fragment  {
 
 
 //        return binding.getRoot();
+
+        loadAllVideo();
+
         return binding.getRoot();
     }
 
@@ -162,34 +188,12 @@ public class HomeFragment extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        List<VideoItem> videoItems = new ArrayList<>();
+
 
 //        swipeListener=new HomeActivity.SwipeListener(binding.homelayout);
 //        listener=new InstructionsActivity1.SwipeListener(binding.homelayout);
 
-        binding.viewPagerVideos.requestDisallowInterceptTouchEvent(true);
-//        swipeListener=new SwipeListener(binding.homelayout);
-        VideoItem item = new VideoItem();
-        item.videoURL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        item.videoTitle = "Women In Tech";
-        item.videoDesc = "International Women's Day 2019";
-        videoItems.add(item);
 
-        VideoItem item2 = new VideoItem();
-        item2.videoURL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        item2.videoTitle = "AXAT";
-        item2.videoDesc = "Axat provides best software solutions.";
-        videoItems.add(item2);
-
-        VideoItem item3 = new VideoItem();
-        item3.videoURL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        item3.videoTitle = "Happy Hour Wednesday";
-        item3.videoDesc = " Depth-First Search Algorithm";
-        videoItems.add(item3);
-
-
-
-   binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems));
 //   viewPager.setOnTouchListener(new View.OnTouchListener() {
 //       @Override
 //       public boolean onTouch(View v, MotionEvent event) {
@@ -370,5 +374,70 @@ public class HomeFragment extends Fragment  {
 //            toast.setView(layout);
 //            toast.show();
 //        }
+    }
+
+    public void loadAllVideo(){
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.MINUTES)
+                .writeTimeout(8, TimeUnit.MINUTES)
+                .readTimeout(8, TimeUnit.MINUTES)
+                .build();
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        api = retrofit.create(Api.class);
+        inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        SharedPreferences sharedPreferences=getContext().getSharedPreferences("goat",MODE_PRIVATE);
+        String token1=sharedPreferences.getString("token","");
+        Log.e("token1","token1"+token1);
+        Call<HomeVideoResponse> call = api.HomeAllVideo("Bearer "+token1);
+        call.enqueue(new Callback<HomeVideoResponse>() {
+            @Override
+            public void onResponse(Call<HomeVideoResponse> call, Response<HomeVideoResponse> response) {
+                if (response.code() == 200) {
+                    List<VideoItem> videoItems = new ArrayList<>();
+
+
+
+                    binding.viewPagerVideos.requestDisallowInterceptTouchEvent(true);
+//        swipeListener=new SwipeListener(binding.homelayout);
+
+                    HomeVideoResponse model= response.body();
+
+                    Log.e("size",""+model.getData().size());
+                   for(int i=0;i<model.getData().size();i++) {
+                       VideoItem item = new VideoItem();
+                       item.videoURL = model.getData().get(i).getMedia_url();
+                       item.videoTitle = model.getData().get(i).getTitle();
+                       item.videoDesc = model.getData().get(i).getDescription();
+                       item.id = model.getData().get(i).getPost_id();
+                       videoItems.add(item);
+                   }
+
+
+
+
+
+                    binding.viewPagerVideos.setAdapter(new VideosAdapter(videoItems,token1));
+
+                } else
+                    Toast.makeText(getContext(), "error" + response.message(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<HomeVideoResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "fail" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

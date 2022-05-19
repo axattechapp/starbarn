@@ -1,8 +1,14 @@
 package com.axat.starbarn.adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import static androidx.camera.core.CameraX.getContext;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.Log;
@@ -31,20 +37,39 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.axat.starbarn.R;
 import com.axat.starbarn.activity.Challenge.Challenge_request_Activity;
 import com.axat.starbarn.activity.HomeActivity;
+import com.axat.starbarn.activity.NameActivity;
+import com.axat.starbarn.activity.OTPActivity;
 import com.axat.starbarn.fragment.home.HomeFragment;
+import com.axat.starbarn.model.OTP_Model;
+import com.axat.starbarn.model.SavedVideoResponse;
 import com.axat.starbarn.model.VideoItem;
+import com.axat.starbarn.service.Api;
 import com.axat.starbarn.service.OnSwipeTouchListener;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewHolder> {
     private List<VideoItem> mVideoItems;
+    private String Token;
     Context mContext;
     OnSwipeTouchListener onSwipeTouchListener;
+    Api api;
 
 
-    public VideosAdapter(List<VideoItem> videoItems) {
+    public VideosAdapter(List<VideoItem> videoItems,String token) {
         mVideoItems = videoItems;
+        Token=token;
 
 
     }
@@ -60,7 +85,7 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VideoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.setVideoData(mVideoItems.get(position));
 
@@ -77,17 +102,58 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
             }
         });
         holder.shareimg.setOnClickListener(view -> {
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             String shareBody = "Here is the share content body";
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
             holder.shareimg.getContext().startActivity(Intent.createChooser(sharingIntent, "Share via"));
         });
         holder.saveimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                OkHttpClient okHttpClient=new OkHttpClient.Builder()
+                        .connectTimeout(8, TimeUnit.MINUTES)
+                        .writeTimeout(8,TimeUnit.MINUTES)
+                        .readTimeout(8,TimeUnit.MINUTES)
+                        .build();
+
+
+                Gson gson=new GsonBuilder()
+                        .setLenient()
+                        .create();
+
+                Retrofit retrofit=new Retrofit.Builder()
+                        .baseUrl(Api.BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .client(okHttpClient)
+                        .build();
+
+                api=retrofit.create(Api.class);
                 holder.saveimg.setImageResource(R.drawable.save1);
+
+                JsonObject jsonObject=new JsonObject();
+                jsonObject.addProperty("post_id",mVideoItems.get(position).id);
+
+
+                Call<SavedVideoResponse> call=api.SavedVideo("Bearer "+Token,jsonObject);
+                call.enqueue(new Callback<SavedVideoResponse>() {
+                    @Override
+                    public void onResponse(Call<SavedVideoResponse> call, Response<SavedVideoResponse> response) {
+                        if (response.code()==200)
+                        {
+                            SavedVideoResponse model= response.body();
+//                            Toast.makeText(mContext, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<SavedVideoResponse> call, Throwable t) {
+                        Toast.makeText(mContext, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
         holder.videoconst.requestDisallowInterceptTouchEvent(true);
