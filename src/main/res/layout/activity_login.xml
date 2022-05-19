@@ -18,12 +18,12 @@
             android:background="@color/primaryColor"
             tools:context=".LoginActivity">
 
-<!--            <androidx.constraintlayout.widget.Guideline-->
-<!--                android:id="@+id/space_top"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                app:layout_constraintGuide_percent="0.1" />-->
+            <!--            <androidx.constraintlayout.widget.Guideline-->
+            <!--                android:id="@+id/space_top"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:orientation="horizontal"-->
+            <!--                app:layout_constraintGuide_percent="0.1" />-->
 
             <ImageView
                 android:id="@+id/img_logo"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                 />
+                />
 
             <TextView
                 android:id="@+id/textdesccompi"
@@ -72,7 +72,7 @@
                     android:textSize="@dimen/_12sdp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-             <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/editpasswordinput"
@@ -83,17 +83,17 @@
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/editemailinput">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editpassworddittext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/email2_bg"
-                android:hint="password"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editpassworddittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/email2_bg"
+                    android:hint="password"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="0dp"
@@ -110,7 +110,22 @@
                 android:id="@+id/textlogin"
                 android:layout_marginTop="@dimen/_30sdp"/>
 
-
+            <TextView
+                android:id="@+id/textpassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:alpha="0.5"
+                android:gravity="center"
+                android:text="Forgot password?"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline3"
+                app:layout_constraintHorizontal_bias="0.422"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/textlogin" />
             <TextView
                 android:id="@+id/textcondition"
                 android:layout_width="wrap_content"
@@ -126,7 +141,7 @@
                 app:layout_constraintEnd_toEndOf="@id/guideline3"
                 app:layout_constraintHorizontal_bias="0.422"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/textlogin" />
+                app:layout_constraintTop_toBottomOf="@+id/textpassword" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
@@ -151,13 +166,13 @@
                 android:text="Sign Up"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-               android:layout_marginStart="5dp"
+                android:layout_marginStart="5dp"
                 android:paddingStart="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline3"
                 app:layout_constraintHorizontal_bias="0.714"
                 app:layout_constraintStart_toEndOf="@+id/textcondition"
-                app:layout_constraintTop_toBottomOf="@+id/textlogin"
+                app:layout_constraintTop_toBottomOf="@+id/textpassword"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

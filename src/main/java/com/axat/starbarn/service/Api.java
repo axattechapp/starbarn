@@ -1,6 +1,7 @@
 package com.axat.starbarn.service;
 
 import com.axat.starbarn.model.CategoryModel;
+import com.axat.starbarn.model.ForgotPassword;
 import com.axat.starbarn.model.LoginModel;
 import com.axat.starbarn.model.LogoutModel;
 import com.axat.starbarn.model.OTP_Model;
@@ -49,6 +50,13 @@ public interface Api {
                                      @Part("category_id[]") RequestBody category_id,
                                      @Part MultipartBody.Part image);
 
+    @Multipart
+    @POST("saveprofile_second")
+    Call<saveProfileModel> saveProfile2(@Header ("Authorization") String token,
+                                       @Part("name") RequestBody name,
+                                       @Part("category_id") RequestBody category_id,
+                                       @Part MultipartBody.Part image);
+
 
 
  @POST("me")
@@ -57,6 +65,11 @@ public interface Api {
  @GET("view_profile")
  Call<ViewProfileModel> viewProfile(@Query("userid") String userid);
 
+    @POST("forgot_password")
+    Call<ForgotPassword> Forgot(@Body JsonObject jsonObject);
+
+    @POST("update_profile")
+    Call<ForgotPassword> UpdateProfile(@Body JsonObject jsonObject);
 
 
 }

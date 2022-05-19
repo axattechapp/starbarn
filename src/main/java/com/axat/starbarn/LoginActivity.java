@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.axat.starbarn.activity.EmailActivity;
 import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.databinding.ActivityLoginBinding;
+import com.axat.starbarn.model.ForgotPassword;
 import com.axat.starbarn.model.LoginModel;
 import com.axat.starbarn.service.Api;
 import com.google.gson.Gson;
@@ -62,7 +63,44 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+        binding.textpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+
+
+                if (!binding.editemailedittext.getText().toString().isEmpty()) {
+                    binding.editemailedittext.setError(null);
+
+                    JsonObject jsonObject = new JsonObject();
+                    jsonObject.addProperty("email", binding.editemailedittext.getText().toString());
+
+                    Call<ForgotPassword> call = api.Forgot(jsonObject);
+                    call.enqueue(new Callback<ForgotPassword>() {
+                        @Override
+                        public void onResponse(Call<ForgotPassword> call, Response<ForgotPassword> response) {
+                            if (response.isSuccessful()) {
+                                ForgotPassword model = response.body();
+                                if (model.status == true) {
+                                    Toast.makeText(LoginActivity.this, model.message, Toast.LENGTH_SHORT).show();
+
+                                } else
+                                    Toast.makeText(LoginActivity.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
+
+                            } else
+                                Toast.makeText(LoginActivity.this, "Login error" + response.message(), Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<ForgotPassword> call, Throwable t) {
+                            Toast.makeText(LoginActivity.this, "Login failed" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }else
+                    binding.editemailedittext.setError("Enter email");
+
+            }
+        });
 
         binding.textlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,37 +111,37 @@ public class LoginActivity extends AppCompatActivity {
                         binding.editpassworddittext.setError(null);
 
 
-                    JsonObject jsonObject = new JsonObject();
-                    jsonObject.addProperty("email", binding.editemailedittext.getText().toString());
-                    jsonObject.addProperty("password", binding.editpassworddittext.getText().toString());
+                        JsonObject jsonObject = new JsonObject();
+                        jsonObject.addProperty("email", binding.editemailedittext.getText().toString());
+                        jsonObject.addProperty("password", binding.editpassworddittext.getText().toString());
 
-                    Call<LoginModel> call = api.login(jsonObject);
-                    call.enqueue(new Callback<LoginModel>() {
-                        @Override
-                        public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
-                            if (response.isSuccessful()) {
-                                LoginModel model = response.body();
-                                if (model.status == true) {
-                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                    SharedPreferences.Editor editor = getSharedPreferences("goat", MODE_PRIVATE).edit();
-                                    editor.putString("token", model.getToken());
-                                    editor.apply();
+                        Call<LoginModel> call = api.login(jsonObject);
+                        call.enqueue(new Callback<LoginModel>() {
+                            @Override
+                            public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+                                if (response.isSuccessful()) {
+                                    LoginModel model = response.body();
+                                    if (model.status == true) {
+                                        Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                        SharedPreferences.Editor editor = getSharedPreferences("goat", MODE_PRIVATE).edit();
+                                        editor.putString("token", model.getToken());
+                                        editor.apply();
 
-                                    Log.e("token",model.getToken());
-                                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                    finishAffinity();
+                                        Log.e("token",model.getToken());
+                                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                        finishAffinity();
+                                    } else
+                                        Toast.makeText(LoginActivity.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
+
                                 } else
-                                    Toast.makeText(LoginActivity.this, "Incorrect credentials", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "Login error" + response.message(), Toast.LENGTH_SHORT).show();
+                            }
 
-                            } else
-                                Toast.makeText(LoginActivity.this, "Login error" + response.message(), Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(Call<LoginModel> call, Throwable t) {
-                            Toast.makeText(LoginActivity.this, "Login failed" + t.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            @Override
+                            public void onFailure(Call<LoginModel> call, Throwable t) {
+                                Toast.makeText(LoginActivity.this, "Login failed" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }else {
                         binding.editpassworddittext.setError("Enter password");
                     }

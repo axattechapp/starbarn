@@ -3,6 +3,7 @@ package com.axat.starbarn.activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -104,6 +105,10 @@ public class Logout extends AppCompatActivity {
                             if (model.status==true)
                             {
                                 Toast.makeText(Logout.this,model.getMessage(), Toast.LENGTH_SHORT).show();
+                                SharedPreferences preferences = getSharedPreferences("goat", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.clear();
+                                editor.commit();
 
 
                                 startActivity(new Intent(Logout.this,EmailActivity.class));

@@ -31,6 +31,7 @@ import com.google.gson.JsonObject;
 import org.json.JSONArray;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -50,6 +51,9 @@ public class CategoriesActivity extends AppCompatActivity {
     LayoutInflater inflater;
     int value;
     Intent intent;
+    ArrayList<Integer> category_array;
+    String cat="";
+    int rb2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,7 @@ public class CategoriesActivity extends AppCompatActivity {
         api = retrofit.create(Api.class);
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        category_array= new ArrayList<Integer>();
         Call<CategoryModel> call = api.getCategory();
         call.enqueue(new Callback<CategoryModel>() {
             @Override
@@ -113,6 +118,14 @@ public class CategoriesActivity extends AppCompatActivity {
 
             binding.backimg.setOnClickListener(view -> onBackPressed());
 
+            binding.textcontinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    nextTask();
+                }
+            });
+
+
 
 
 
@@ -140,59 +153,17 @@ public class CategoriesActivity extends AppCompatActivity {
                     binding.textcontinue.setBackgroundColor(getResources().getColor(R.color.btn_orange));
 
                 }
-                else
+                if (value==2)
                 {
-                    SharedPreferences preferences = CategoriesActivity.this.getSharedPreferences("goat",Context.MODE_PRIVATE);
-                    String retrivedToken  = preferences.getString("token",null);//second parameter default value.
 
 
 
-                    int rb2 = ((RadioButton) group.findViewById(checkedId)).getId();
+                    rb2 = ((RadioButton) group.findViewById(checkedId)).getId();
+                    category_array.add(rb2);
                     Log.e("rb",""+rb2);
-                    binding.textcontinue.setOnClickListener(view -> {
-                        startActivity(new Intent(CategoriesActivity.this, InstructionsActivity1.class));
-                    });
-                    String name = intent.getStringExtra("name");
-                    String imageurl = intent.getStringExtra("profile");
-
-                    RequestBody name1 = RequestBody.create(MediaType.parse("text/plain"), name);
-                    RequestBody category_id = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(rb2));
 
 
 
-
-                    File file = new File(imageurl);
-                    MultipartBody.Part imagePart = MultipartBody.Part.createFormData("profile", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
-                    Log.e("bearer",retrivedToken);
-                    Log.e("name",name);
-                    Log.e("imageurl",imageurl);
-
-
-                    Call<saveProfileModel> calll=api.saveProfile("Bearer "+retrivedToken,name1,category_id,imagePart);
-                    binding.textcontinue.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            calll.enqueue(new Callback<saveProfileModel>() {
-                                @Override
-                                public void onResponse(Call<saveProfileModel> call, Response<saveProfileModel> response) {
-                                    if (response.code()==200)
-                                    {
-                                        Toast.makeText(CategoriesActivity.this,"success",Toast.LENGTH_SHORT).show();
-                                    }else
-                                    {
-                                        Toast.makeText(CategoriesActivity.this,"error"+response.message(),Toast.LENGTH_SHORT).show();
-                                        Log.e("error",""+response.errorBody());
-                                    }
-
-                                }
-
-                                @Override
-                                public void onFailure(Call<saveProfileModel> call, Throwable t) {
-                                    Toast.makeText(CategoriesActivity.this,"fail"+t.getMessage(),Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
 
                 }
 
@@ -200,4 +171,66 @@ public class CategoriesActivity extends AppCompatActivity {
         }
 
 };
+
+    public void nextTask()
+    {
+
+        if (value==2)
+        {
+
+            for (int i=0;i<category_array.size();i++)
+            {
+                Log.e("btn_value",""+category_array.get(i));
+            }
+            cat=category_array.toString().replaceAll("\\[|\\]", "").replaceAll(", ",",");
+            Log.e("cat",""+cat);
+            SharedPreferences preferences = CategoriesActivity.this.getSharedPreferences("goat",Context.MODE_PRIVATE);
+            String retrivedToken  = preferences.getString("token",null);//second parameter default value.
+
+
+            String name = intent.getStringExtra("name");
+            String imageurl = intent.getStringExtra("profile");
+
+            RequestBody name1 = RequestBody.create(MediaType.parse("text/plain"), name);
+//            RequestBody category_id = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(rb2));
+            RequestBody category_id = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(cat));
+
+
+
+
+            File file = new File(imageurl);
+            MultipartBody.Part imagePart = MultipartBody.Part.createFormData("profile", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+            Log.e("bearer",retrivedToken);
+            Log.e("name",name);
+            Log.e("imageurl",imageurl);
+
+
+            Call<saveProfileModel> calll=api.saveProfile2("Bearer "+retrivedToken,name1,category_id,imagePart);
+
+                    calll.enqueue(new Callback<saveProfileModel>() {
+                        @Override
+                        public void onResponse(Call<saveProfileModel> call, Response<saveProfileModel> response) {
+                            if (response.code()==200)
+                            {
+                                Toast.makeText(CategoriesActivity.this,"success",Toast.LENGTH_SHORT).show();
+
+                                startActivity(new Intent(CategoriesActivity.this, InstructionsActivity1.class));
+
+                            }else
+                            {
+                                Toast.makeText(CategoriesActivity.this,"error"+response.message(),Toast.LENGTH_SHORT).show();
+                                Log.e("error",""+response.errorBody());
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<saveProfileModel> call, Throwable t) {
+                            Toast.makeText(CategoriesActivity.this,"fail"+t.getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+        }
+    }
 }

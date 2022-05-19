@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
             SharedPreferences preferences=getSharedPreferences("goat",MODE_PRIVATE);
             String token=preferences.getString("token","");
+            Log.e("token",""+token);
 
             if(token=="")
             {
