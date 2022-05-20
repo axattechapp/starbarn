@@ -1,7 +1,10 @@
 package com.axat.starbarn.fragment.allvideo;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +16,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.axat.starbarn.R;
+import com.axat.starbarn.model.HomeVideoResponse;
+import com.axat.starbarn.service.Api;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AllVideosFragment extends Fragment {
 
@@ -24,6 +40,7 @@ public class AllVideosFragment extends Fragment {
     RecyclerView rcv;
     AllImageAdapter adapter;
     ArrayList<Integer> modelList;
+    Api api;
 
 
     public static AllVideosFragment newInstance() {
@@ -62,6 +79,28 @@ public class AllVideosFragment extends Fragment {
         modelList.add(13,R.drawable.allvideo2);
         modelList.add(14,R.drawable.allvideo1);
 
+        initialsRetrofitObjects();
+
+        SharedPreferences sharedPreferences=getContext().getSharedPreferences("goat",MODE_PRIVATE);
+        String token1=sharedPreferences.getString("token","");
+
+        Call<HomeVideoResponse> call=api.get_my_Posts("Bearer "+token1);
+        call.enqueue(new Callback<HomeVideoResponse>() {
+            @Override
+            public void onResponse(Call<HomeVideoResponse> call, Response<HomeVideoResponse> response) {
+                if (response.code()==200)
+                {
+                    Toast.makeText(getContext(), "Successfully called MY POST API", Toast.LENGTH_SHORT).show();
+                }else
+                    Toast.makeText(getContext(), "error"+response.message(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<HomeVideoResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "fail"+t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         GridLayoutManager gridLayoutManager=new GridLayoutManager(view.getContext(),3);
         rcv.setLayoutManager(gridLayoutManager);
@@ -114,5 +153,26 @@ public class AllVideosFragment extends Fragment {
 
 
         return holder;
+    }
+    public void initialsRetrofitObjects()
+    {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.MINUTES)
+                .writeTimeout(8, TimeUnit.MINUTES)
+                .readTimeout(8, TimeUnit.MINUTES)
+                .build();
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        api = retrofit.create(Api.class);
     }
 }

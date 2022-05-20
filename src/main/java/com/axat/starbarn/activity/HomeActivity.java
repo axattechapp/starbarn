@@ -53,6 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private NavHostFragment navHostFragment;
     public static String user_id="";
+
     public float x1, x2, y1, y2;
 //    InstructionsActivity1.SwipeListener swipeListener;
 
@@ -98,6 +99,7 @@ public class HomeActivity extends AppCompatActivity {
                     sharedPreferences1.edit().apply();
                     sharedPreferences1.edit().commit();
                     user_id=String.valueOf(model.id);
+
 
                 }else
                 {

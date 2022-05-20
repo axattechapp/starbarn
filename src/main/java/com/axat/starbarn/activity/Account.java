@@ -111,7 +111,7 @@ public class Account extends AppCompatActivity {
 //                                .load(Api.Img_Url + model.getData().get(0).getProfile())
 //                                .into(binding.profileimg1);
                         Picasso.get()
-                                .load(Api.BASE_URL + model.getData().get(0).getProfile())
+                                .load(Api.Img_Url + model.getData().get(0).getProfile())
                                 .into(binding.profileimg1);
                     }
 

@@ -413,13 +413,17 @@ public class HomeFragment extends Fragment  {
 
                     HomeVideoResponse model= response.body();
 
+
                     Log.e("size",""+model.getData().size());
                    for(int i=0;i<model.getData().size();i++) {
                        VideoItem item = new VideoItem();
-                       item.videoURL = model.getData().get(i).getMedia_url();
+                       item.videoURL = model.getData().get(i).getMediaUrl();
                        item.videoTitle = model.getData().get(i).getTitle();
                        item.videoDesc = model.getData().get(i).getDescription();
-                       item.id = model.getData().get(i).getPost_id();
+                       item.id = model.getData().get(i).getPostId();
+                       item.media_type=model.getData().get(i).getMediaType();
+                       item.category_id=model.getData().get(i).getCategoryId();
+                       item.status=model.getData().get(i).getStatus();
                        videoItems.add(item);
                    }
 

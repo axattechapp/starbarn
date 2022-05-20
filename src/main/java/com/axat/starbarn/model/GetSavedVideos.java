@@ -1,18 +1,19 @@
 package com.axat.starbarn.model;
+
 import java.util.List;
 import javax.annotation.Generated;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("jsonschema2pojo")
-public class HomeVideoResponse {
+public class GetSavedVideos {
 
     @SerializedName("status")
     @Expose
     private String status;
-    @SerializedName("meassage")
+    @SerializedName("message")
     @Expose
-    private String meassage;
+    private String message;
     @SerializedName("data")
     @Expose
     private List<Datum> data = null;
@@ -25,21 +26,21 @@ public class HomeVideoResponse {
         this.status = status;
     }
 
-    public HomeVideoResponse withStatus(String status) {
+    public GetSavedVideos withStatus(String status) {
         this.status = status;
         return this;
     }
 
-    public String getMeassage() {
-        return meassage;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMeassage(String meassage) {
-        this.meassage = meassage;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public HomeVideoResponse withMeassage(String meassage) {
-        this.meassage = meassage;
+    public GetSavedVideos withMessage(String message) {
+        this.message = message;
         return this;
     }
 
@@ -51,13 +52,31 @@ public class HomeVideoResponse {
         this.data = data;
     }
 
-    public HomeVideoResponse withData(List<Datum> data) {
+    public GetSavedVideos withData(List<Datum> data) {
         this.data = data;
         return this;
     }
     @Generated("jsonschema2pojo")
     public class Datum {
 
+        @SerializedName("id")
+        @Expose
+        private Integer id;
+        @SerializedName("fk_user_id")
+        @Expose
+        private Integer fkUserId;
+        @SerializedName("fk_post_id")
+        @Expose
+        private Integer fkPostId;
+        @SerializedName("created_at")
+        @Expose
+        private String createdAt;
+        @SerializedName("update_at")
+        @Expose
+        private Object updateAt;
+        @SerializedName("deleted_at")
+        @Expose
+        private Object deletedAt;
         @SerializedName("post_id")
         @Expose
         private Integer postId;
@@ -66,13 +85,13 @@ public class HomeVideoResponse {
         private Integer postedByUserId;
         @SerializedName("challenged_post_id")
         @Expose
-        private Integer challengedPostId;
+        private Object challengedPostId;
         @SerializedName("title")
         @Expose
         private String title;
         @SerializedName("thumbnail")
         @Expose
-        private Object thumbnail;
+        private String thumbnail;
         @SerializedName("media_type")
         @Expose
         private String mediaType;
@@ -87,13 +106,13 @@ public class HomeVideoResponse {
         private String categoryId;
         @SerializedName("tag")
         @Expose
-        private Object tag;
+        private String tag;
         @SerializedName("slug")
         @Expose
-        private Object slug;
+        private String slug;
         @SerializedName("caption")
         @Expose
-        private Object caption;
+        private String caption;
         @SerializedName("status")
         @Expose
         private Integer status;
@@ -103,15 +122,87 @@ public class HomeVideoResponse {
         @SerializedName("end_challenge_at")
         @Expose
         private Object endChallengeAt;
-        @SerializedName("created_at")
-        @Expose
-        private String createdAt;
         @SerializedName("updated_at")
         @Expose
         private Object updatedAt;
-        @SerializedName("deleted_at")
-        @Expose
-        private Object deletedAt;
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public Datum withId(Integer id) {
+            this.id = id;
+            return this;
+        }
+
+        public Integer getFkUserId() {
+            return fkUserId;
+        }
+
+        public void setFkUserId(Integer fkUserId) {
+            this.fkUserId = fkUserId;
+        }
+
+        public Datum withFkUserId(Integer fkUserId) {
+            this.fkUserId = fkUserId;
+            return this;
+        }
+
+        public Integer getFkPostId() {
+            return fkPostId;
+        }
+
+        public void setFkPostId(Integer fkPostId) {
+            this.fkPostId = fkPostId;
+        }
+
+        public Datum withFkPostId(Integer fkPostId) {
+            this.fkPostId = fkPostId;
+            return this;
+        }
+
+        public String getCreatedAt() {
+            return createdAt;
+        }
+
+        public void setCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+        }
+
+        public Datum withCreatedAt(String createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Object getUpdateAt() {
+            return updateAt;
+        }
+
+        public void setUpdateAt(Object updateAt) {
+            this.updateAt = updateAt;
+        }
+
+        public Datum withUpdateAt(Object updateAt) {
+            this.updateAt = updateAt;
+            return this;
+        }
+
+        public Object getDeletedAt() {
+            return deletedAt;
+        }
+
+        public void setDeletedAt(Object deletedAt) {
+            this.deletedAt = deletedAt;
+        }
+
+        public Datum withDeletedAt(Object deletedAt) {
+            this.deletedAt = deletedAt;
+            return this;
+        }
 
         public Integer getPostId() {
             return postId;
@@ -139,15 +230,15 @@ public class HomeVideoResponse {
             return this;
         }
 
-        public Integer getChallengedPostId() {
+        public Object getChallengedPostId() {
             return challengedPostId;
         }
 
-        public void setChallengedPostId(Integer challengedPostId) {
+        public void setChallengedPostId(Object challengedPostId) {
             this.challengedPostId = challengedPostId;
         }
 
-        public Datum withChallengedPostId(Integer challengedPostId) {
+        public Datum withChallengedPostId(Object challengedPostId) {
             this.challengedPostId = challengedPostId;
             return this;
         }
@@ -165,15 +256,15 @@ public class HomeVideoResponse {
             return this;
         }
 
-        public Object getThumbnail() {
+        public String getThumbnail() {
             return thumbnail;
         }
 
-        public void setThumbnail(Object thumbnail) {
+        public void setThumbnail(String thumbnail) {
             this.thumbnail = thumbnail;
         }
 
-        public Datum withThumbnail(Object thumbnail) {
+        public Datum withThumbnail(String thumbnail) {
             this.thumbnail = thumbnail;
             return this;
         }
@@ -197,11 +288,6 @@ public class HomeVideoResponse {
 
         public void setMediaUrl(String mediaUrl) {
             this.mediaUrl = mediaUrl;
-        }
-
-        public Datum withMediaUrl(String mediaUrl) {
-            this.mediaUrl = mediaUrl;
-            return this;
         }
 
         public String getDescription() {
@@ -230,41 +316,41 @@ public class HomeVideoResponse {
             return this;
         }
 
-        public Object getTag() {
+        public String getTag() {
             return tag;
         }
 
-        public void setTag(Object tag) {
+        public void setTag(String tag) {
             this.tag = tag;
         }
 
-        public Datum withTag(Object tag) {
+        public Datum withTag(String tag) {
             this.tag = tag;
             return this;
         }
 
-        public Object getSlug() {
+        public String getSlug() {
             return slug;
         }
 
-        public void setSlug(Object slug) {
+        public void setSlug(String slug) {
             this.slug = slug;
         }
 
-        public Datum withSlug(Object slug) {
+        public Datum withSlug(String slug) {
             this.slug = slug;
             return this;
         }
 
-        public Object getCaption() {
+        public String getCaption() {
             return caption;
         }
 
-        public void setCaption(Object caption) {
+        public void setCaption(String caption) {
             this.caption = caption;
         }
 
-        public Datum withCaption(Object caption) {
+        public Datum withCaption(String caption) {
             this.caption = caption;
             return this;
         }
@@ -308,19 +394,6 @@ public class HomeVideoResponse {
             return this;
         }
 
-        public String getCreatedAt() {
-            return createdAt;
-        }
-
-        public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-        }
-
-        public Datum withCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public Object getUpdatedAt() {
             return updatedAt;
         }
@@ -331,19 +404,6 @@ public class HomeVideoResponse {
 
         public Datum withUpdatedAt(Object updatedAt) {
             this.updatedAt = updatedAt;
-            return this;
-        }
-
-        public Object getDeletedAt() {
-            return deletedAt;
-        }
-
-        public void setDeletedAt(Object deletedAt) {
-            this.deletedAt = deletedAt;
-        }
-
-        public Datum withDeletedAt(Object deletedAt) {
-            this.deletedAt = deletedAt;
             return this;
         }
 

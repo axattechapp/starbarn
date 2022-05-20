@@ -40,9 +40,11 @@ import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.activity.NameActivity;
 import com.axat.starbarn.activity.OTPActivity;
 import com.axat.starbarn.fragment.home.HomeFragment;
+import com.axat.starbarn.model.ChallengeModel;
 import com.axat.starbarn.model.OTP_Model;
 import com.axat.starbarn.model.SavedVideoResponse;
 import com.axat.starbarn.model.VideoItem;
+import com.axat.starbarn.model.VoteModel;
 import com.axat.starbarn.service.Api;
 import com.axat.starbarn.service.OnSwipeTouchListener;
 import com.google.gson.Gson;
@@ -93,14 +95,13 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
 
 
 
-        holder.challengeimg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(v.getContext(), "clicked",Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(v.getContext(), Challenge_request_Activity.class);
-                v.getContext().startActivity(intent);
-            }
-        });
+//        holder.challengeimg.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Toast.makeText(v.getContext(), "clicked",Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
         holder.shareimg.setOnClickListener(view -> {
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
@@ -143,14 +144,15 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
                         if (response.code()==200)
                         {
                             SavedVideoResponse model= response.body();
-//                            Toast.makeText(mContext, ""+model.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(v.getContext(), ""+model.getMessage(), Toast.LENGTH_SHORT).show();
 
-                        }
+                        }else
+                            Toast.makeText(v.getContext(), ""+response.message(), Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<SavedVideoResponse> call, Throwable t) {
-                        Toast.makeText(mContext, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -164,36 +166,106 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
                 Toast.makeText(  holder.videoconst.getContext(), "TOP SWIPE", Toast.LENGTH_SHORT).show();
             }
         });
+        holder.challengeimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initialsRetrofitObjects();
+                Call<ChallengeModel> call=api.challengeVideo("Bearer "+Token,mVideoItems.get(position).id,mVideoItems.get(position).category_id,mVideoItems.get(position).media_type,mVideoItems.get(position).videoDesc,mVideoItems.get(position).status);
+                call.enqueue(new Callback<ChallengeModel>() {
+                    @Override
+                    public void onResponse(Call<ChallengeModel> call, Response<ChallengeModel> response) {
+                        if(response.code()==200)
+                        {
+                            ChallengeModel model=response.body();
+                            Toast.makeText(v.getContext(), ""+model.getMeassage(), Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(v.getContext(), Challenge_request_Activity.class);
+                            v.getContext().startActivity(intent);
+                        }else
+                            Toast.makeText(v.getContext(), ""+response.message(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ChallengeModel> call, Throwable t) {
+                        Toast.makeText(v.getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+            }
+        });
 
         holder.videoconst.setOnTouchListener(new OnSwipeTouchListener() {
             public boolean onSwipeTop() {
-                Toast.makeText(holder.videoconst.getContext(), "top", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(holder.videoconst.getContext(), "top", Toast.LENGTH_SHORT).show();
                 return true;
             }
             public boolean onSwipeRight() {
 //                Toast.makeText(holder.videoconst.getContext(), "right", Toast.LENGTH_SHORT).show();
-                View layout = LayoutInflater.from(holder.videoconst.getContext()).inflate(R.layout.toastdislike, null);
+                initialsRetrofitObjects();
+                Log.e("swipe","Right");
+                Call<VoteModel> call=api.vote("Bearer "+Token,mVideoItems.get(position).id,0);
+                call.enqueue(new Callback<VoteModel>() {
+                    @Override
+                    public void onResponse(Call<VoteModel> call, Response<VoteModel> response) {
+                        if (response.code()==200)
+                        {
+//                            Toast.makeText(mContext, "Voted", Toast.LENGTH_SHORT).show();
+                            View layout = LayoutInflater.from(holder.videoconst.getContext()).inflate(R.layout.toastdislike, null);
 
-                Toast toast = new Toast(holder.videoconst.getContext());
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setView(layout);
-                toast.show();
+                            Toast toast = new Toast(holder.videoconst.getContext());
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.setDuration(Toast.LENGTH_SHORT);
+                            toast.setView(layout);
+                            toast.show();
+
+                        }else
+                            Toast.makeText( holder.videoconst.getContext(), "error"+response.message(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<VoteModel> call, Throwable t) {
+                        Toast.makeText(holder.videoconst.getContext(), "fail to vote"+t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+
+
                 return true;
             }
             public boolean onSwipeLeft() {
 //                Toast.makeText(holder.videoconst.getContext(), "left", Toast.LENGTH_SHORT).show();
-                View layout = LayoutInflater.from(holder.videoconst.getContext()).inflate(R.layout.toastlike, null);
 
-                Toast toast = new Toast(holder.videoconst.getContext());
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.setDuration(Toast.LENGTH_SHORT);
-                toast.setView(layout);
-                toast.show();
+                initialsRetrofitObjects();
+                Log.e("swipe","Left");
+                Call<VoteModel> call=api.vote("Bearer "+Token,mVideoItems.get(position).id,1);
+                call.enqueue(new Callback<VoteModel>() {
+                    @Override
+                    public void onResponse(Call<VoteModel> call, Response<VoteModel> response) {
+                        if (response.code()==200)
+                        {
+//                            Toast.makeText(mContext, "Voted", Toast.LENGTH_SHORT).show();
+                            View layout = LayoutInflater.from(holder.videoconst.getContext()).inflate(R.layout.toastlike, null);
+
+                            Toast toast = new Toast(holder.videoconst.getContext());
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.setDuration(Toast.LENGTH_SHORT);
+                            toast.setView(layout);
+                            toast.show();
+                        }else
+                            Toast.makeText(holder.videoconst.getContext(), "error"+response.message(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<VoteModel> call, Throwable t) {
+                        Toast.makeText(holder.videoconst.getContext(), "fail to vote"+t.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
                 return true;
             }
             public boolean onSwipeBottom() {
-                Toast.makeText(holder.videoconst.getContext(), "bottom", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(holder.videoconst.getContext(), "bottom", Toast.LENGTH_SHORT).show();
                 return true;
             }
         });
@@ -250,6 +322,28 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.VideoViewH
     @Override
     public int getItemCount() {
         return mVideoItems.size();
+    }
+
+    public void initialsRetrofitObjects()
+    {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.MINUTES)
+                .writeTimeout(8, TimeUnit.MINUTES)
+                .readTimeout(8, TimeUnit.MINUTES)
+                .build();
+
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        api = retrofit.create(Api.class);
     }
 
     static class VideoViewHolder extends RecyclerView.ViewHolder {
