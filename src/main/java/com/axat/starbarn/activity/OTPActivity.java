@@ -46,6 +46,11 @@ public class OTPActivity extends AppCompatActivity {
         addTextWatcher(binding.otpEditText5);
         addTextWatcher(binding.otpEditText6);
 
+        Intent intent=getIntent();
+        String Phone=intent.getStringExtra("phone");
+
+        binding.textnumber.setText(Phone);
+
 
         OkHttpClient okHttpClient=new OkHttpClient.Builder()
                 .connectTimeout(8, TimeUnit.MINUTES)

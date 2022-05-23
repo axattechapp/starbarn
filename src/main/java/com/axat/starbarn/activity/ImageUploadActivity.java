@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -54,11 +55,13 @@ public class ImageUploadActivity extends AppCompatActivity {
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 } else {
-                    Intent intent = new Intent();
-                    intent.setType("image/*");
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
+//                    Intent intent = new Intent();
+//                    intent.setType("image/*");
+//                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    pickIntent.setType("image/*");
 
-                    startActivityForResult(intent, REQUEST_SHERGIL);
+                    startActivityForResult(pickIntent, 10);
 
 
                 }
@@ -78,62 +81,29 @@ public class ImageUploadActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==REQUEST_SHERGIL && resultCode == Activity.RESULT_OK && data != null)
+        if (requestCode == 10 && resultCode == RESULT_OK)
         {
-
-
             Uri uri=data.getData();
-//             imageFile = new File(path.getPath());
-//             imageurl=path.getPath().toString();
-//               imageurl= new File(getRealPathFromURI(path));
-//            imageurl = getRealPathFromUri(requireActivity(),path);
 
-//            imageurl= RealPathUtil.getRealPath(binding.getRoot().getContext(),uri);
-//            Log.e("imgUrlResult","i"+imageurl);
-//            String path = getRealPathFromURI(getActivity(), uri);
-//            if (imageurl==null)
-//            {
-//
-//            }
-//            imageurl=getImagePathFromInputStreamUri(uri);
-            String path = null;
+
             if (Build.VERSION.SDK_INT < 11)
             {
-                imageurl = RealPathUtil.getRealPathFromURI_BelowAPI11(ImageUploadActivity.this, uri);
+                imageurl = RealPathUtil.getRealPathFromURI_BelowAPI11(binding.getRoot().getContext(), uri);
             }
             // SDK >= 11 && SDK < 19
             else if (Build.VERSION.SDK_INT < 19)
             {
-                imageurl = RealPathUtil.getRealPathFromURI_API11to18(ImageUploadActivity.this, uri);
+                imageurl = RealPathUtil.getRealPathFromURI_API11to18(binding.getRoot().getContext(), uri);
             }
             // SDK > 19 (Android 4.4)
             else
             {
-                imageurl = RealPathUtil.getRealPathFromURI_API19(ImageUploadActivity.this, uri);
+                imageurl = RealPathUtil.getRealPathFromURI_API19(binding.getRoot().getContext(), uri);
             }
-
             Log.e("path", "File Path: " + imageurl);
-            // Get the file instance
-//            File file = new File(path);
-            Log.e("imgUrlResult","i"+imageurl);
-
-//            Log.e("Check", "URI Path : " + uri.getPath());
-//            Log.e("Check", "Real Path : " + path);
-
-
-//            File file = new File(path.getPath());
-//            RequestBody requestFile=RequestBody.create(MediaType.parse("multipart/form-data"), file);
-//             body = try {
-////                bitmap=MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),path);
-////
-////               UploadImage();
-////            } catch (IOException e) {
-////                e.printStackTrace();
-////            }MultipartBody.Part.createFormData("image", file.getName(), requestFile);
-
             Bitmap bitmap= null;
             try {
-                bitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(uri));
+                bitmap = BitmapFactory.decodeStream(this.getContentResolver().openInputStream(uri));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

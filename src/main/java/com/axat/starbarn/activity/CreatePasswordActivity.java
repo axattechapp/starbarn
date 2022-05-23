@@ -21,6 +21,8 @@ public class CreatePasswordActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String email=intent.getStringExtra("email");
 
+        binding.textcreateemail.setText(email);
+
         binding.textcontinue.setOnClickListener(view -> {
 //            startActivity(new Intent(CreatePasswordActivity.this, VerfiyNumberActivity.class));
             Intent intent2=new Intent(CreatePasswordActivity.this,VerfiyNumberActivity.class);

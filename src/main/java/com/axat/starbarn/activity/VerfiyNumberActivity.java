@@ -97,6 +97,7 @@ public class VerfiyNumberActivity extends AppCompatActivity {
                         editor.apply();
                         Log.e("token_register",register_phase1.getToken());
                         Intent intent1=new Intent(VerfiyNumberActivity.this,OTPActivity.class);
+                        intent1.putExtra("phone",binding.editphoneedittext.getText().toString());
                         startActivity(intent1);
                     }else
                         Toast.makeText(VerfiyNumberActivity.this, ""+response.message(), Toast.LENGTH_SHORT).show();
