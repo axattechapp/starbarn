@@ -28,17 +28,20 @@ import android.widget.Toast;
 import com.axat.starbarn.R;
 import com.axat.starbarn.ToastDislikeActivity;
 import com.axat.starbarn.activity.Account;
+import com.axat.starbarn.activity.HomeActivity;
 import com.axat.starbarn.activity.Ladder.LadderActivity;
 import com.axat.starbarn.activity.Rewards;
 import com.axat.starbarn.activity.SavedActivity.Saved;
 import com.axat.starbarn.adapter.ViewPagerAdapter;
 import com.axat.starbarn.databinding.SettingFragmentBinding;
 import com.axat.starbarn.model.DashboardResponse;
+import com.axat.starbarn.model.ViewProfileModel;
 import com.axat.starbarn.service.Api;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.TimeUnit;
 
@@ -182,6 +185,36 @@ public class SettingFragment extends Fragment {
         inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         SharedPreferences sharedPreferences=getContext().getSharedPreferences("goat",MODE_PRIVATE);
         String token1=sharedPreferences.getString("token","");
+
+        Call<ViewProfileModel> call21=api.viewProfile(HomeActivity.user_id);
+        call21.enqueue(new Callback<ViewProfileModel>() {
+            @Override
+            public void onResponse(Call<ViewProfileModel> call, Response<ViewProfileModel> response) {
+                if (response.code()==200)
+                {
+                    ViewProfileModel model=response.body();
+                    Log.e("img",""+Api.Img_Url + model.getData().get(0).getProfile());
+                    if (model.getData().get(0).getProfile()!=null) {
+//                        Glide.with(Account.this)
+//                                .load(Api.Img_Url + model.getData().get(0).getProfile())
+//                                .into(binding.profileimg1);
+                        Picasso.get()
+                                .load(Api.Img_Url + model.getData().get(0).getProfile())
+                                .into( binding.profileimg);
+
+                        binding.textname.setText(model.getData().get(0).getName());
+                    }
+
+                }else
+                    Toast.makeText(getContext(), ""+response.message(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ViewProfileModel> call, Throwable t) {
+                Toast.makeText(getContext(), ""+t.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
         Log.e("token1","token1"+token1);
         Call<DashboardResponse> call = api.Dashboard("Bearer "+token1);
         call.enqueue(new Callback<DashboardResponse>() {
@@ -193,7 +226,7 @@ public class SettingFragment extends Fragment {
                     binding.textchallenge.setText(String.valueOf(response.body().getChallenge_remain()));
                     binding.textfollowingcount.setText(String.valueOf(response.body().getFollowing_count()));
                     binding.textfollowercount.setText(String.valueOf(response.body().getFollwer_count()));//textfollowingcount
-//                    binding.textLikesCount.setText(String.valueOf(response.body().getLiked()));
+                    binding.textLikesCount.setText(String.valueOf(response.body().getLiked()));
 
                 } else
                     Toast.makeText(getContext(), "error" + response.message(), Toast.LENGTH_SHORT).show();
@@ -206,5 +239,25 @@ public class SettingFragment extends Fragment {
         });
 
     }
+    public void initialsRetrofitObjects()
+    {
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(8, TimeUnit.MINUTES)
+                .writeTimeout(8, TimeUnit.MINUTES)
+                .readTimeout(8, TimeUnit.MINUTES)
+                .build();
 
+
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(okHttpClient)
+                .build();
+
+        api = retrofit.create(Api.class);
+    }
 }

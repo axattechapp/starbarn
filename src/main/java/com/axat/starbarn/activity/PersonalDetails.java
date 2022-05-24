@@ -3,6 +3,7 @@ package com.axat.starbarn.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -67,6 +68,11 @@ public class PersonalDetails extends AppCompatActivity {
         binding.save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.e("name",binding.edtName.getText().toString());
+                Log.e("email",binding.edtEmail.getText().toString());
+                Log.e("phone",binding.edtPhone.getText().toString());
+
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("user_id", HomeActivity.user_id);
                 jsonObject.addProperty("name", binding.edtName.getText().toString());
@@ -79,6 +85,8 @@ public class PersonalDetails extends AppCompatActivity {
                     public void onResponse(Call<ForgotPassword> call, Response<ForgotPassword> response) {
                         if (response.isSuccessful()) {
                             Toast.makeText(PersonalDetails.this,"Personal Detail Updated successfully",Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(PersonalDetails.this,Account.class);
+                            startActivity(intent);
                         } else
                             Toast.makeText(PersonalDetails.this, "Login error" + response.message(), Toast.LENGTH_SHORT).show();
                     }

@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.axat.starbarn.LoginActivity;
 import com.axat.starbarn.R;
 import com.axat.starbarn.model.LogoutModel;
 import com.axat.starbarn.service.Api;
@@ -111,7 +112,7 @@ public class Logout extends AppCompatActivity {
                                 editor.commit();
 
 
-                                startActivity(new Intent(Logout.this,EmailActivity.class));
+                                startActivity(new Intent(Logout.this, LoginActivity.class));
                                 finishAffinity();
                             }else
                                 Toast.makeText(Logout.this, "request denied"+model.getMessage(), Toast.LENGTH_SHORT).show();

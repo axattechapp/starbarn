@@ -90,7 +90,7 @@ public class AllVideosFragment extends Fragment {
             public void onResponse(Call<HomeVideoResponse> call, Response<HomeVideoResponse> response) {
                 if (response.code()==200)
                 {
-                    Toast.makeText(getContext(), "Successfully called MY POST API", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), "Successfully called MY POST API", Toast.LENGTH_SHORT).show();
                 }else
                     Toast.makeText(getContext(), "error"+response.message(), Toast.LENGTH_SHORT).show();
             }
